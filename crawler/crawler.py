@@ -27,7 +27,7 @@ def normalize_link(url, base):
 
 
 def tag_visible(element):
-    if element.parent.name in ['style', 'script', 'head', 'title', 'meta', '[document]']:
+    if element.parent.name in ['style', 'script', 'head', 'title', 'meta', '[document]', 'nav']:
         return False
     if isinstance(element, Comment):
         return False
@@ -78,7 +78,8 @@ class Crawler(object):
         print("(ok) Crawling {} ,Max downloads {}".format(url, self.max_downloads))
         s = BeautifulSoup(r.text, "html.parser")
         if url not in self.all_urls:
-            texts = s.findAll(text=True)
+            main = s.find('main')
+            texts = main.findAll(text=True)
             visible_texts = filter(tag_visible, texts)
             self.all_urls[url] = u" ".join(t.strip() for t in visible_texts)
         enlaces = s.find_all('a', href=True)
