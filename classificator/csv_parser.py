@@ -4,6 +4,7 @@ from pattern.text.en import singularize
 
 dataset_refinement = {}
 dataset = {}
+dataset_subcat = {}
 appear_counter = []
 
 def parse_csv_amazon():
@@ -59,4 +60,25 @@ def parse_csv_amazon():
                     [res2.append(x) for x in res if x not in res2] 
                     dataset[keywords[1]] = res2
 
-    return dataset
+                
+            if len(keywords) > 2:
+                for i in range(3, len(keywords)):
+                    words = words + keywords[i].split(' ')
+                words = list(filter(lambda x: len(x) > 1, words))
+                words = list(map(lambda x: singularize(x), words)) # Convert all words to singular
+
+                if keywords[-1] in dataset_refinement:
+                    words = words + dataset_refinement[keywords[-1]]
+                res = [] 
+                [res.append(x) for x in words if x not in res] 
+                key = str([keywords[1],keywords[2]])
+                if key not in dataset_subcat:
+                    dataset_subcat[key] = res
+                else:
+                    res = dataset_subcat[key] + res
+                    res2 = [] 
+                    [res2.append(x) for x in res if x not in res2] 
+                    dataset_subcat[key] = res2
+                    
+
+    return dataset, dataset_subcat
