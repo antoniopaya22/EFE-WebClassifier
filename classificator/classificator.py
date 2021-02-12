@@ -76,7 +76,6 @@ def classify_all_pages(pages):
  
 
 if __name__ == '__main__':
-
     #(cat, subcat) =  get_page_category(['500 sheets standard copy paper toner ink'])
     #(cat, subcat) =  get_page_category(['Samsung 960 EVO 500 GB PCIe NVMe M.2 (2280) Internal Solid State Drive (SSD) (MZ-V7S500)'])
     #(cat, subcat) =  get_page_category(['Team Group 16 GB USB stick'])
