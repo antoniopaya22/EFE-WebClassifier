@@ -13,7 +13,7 @@ def getInitialWordsFrequency(filename):
 
 def check_if_len_less_than(arr_a, keyword_number):
     if len(arr_a) < keyword_number:
-        for i in range(len(arr_a)-1, 21):
+        for i in range(len(arr_a), 20):
             arr_a.append('')
     return arr_a
 
