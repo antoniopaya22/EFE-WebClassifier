@@ -9,7 +9,7 @@ appear_counter = []
 
 def parse_csv_amazon():
 
-    with open('../csv_data/refinements.csv', 'r') as file:
+    with open('./csv_data/refinements.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             #print(row)
@@ -32,7 +32,7 @@ def parse_csv_amazon():
                     dataset_refinement[keywords[0]] = res2
             
 
-    with open('../csv_data/amazon.csv', 'r') as file:
+    with open('./csv_data/amazon.csv', 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             keywords = row[0].split('/')
